@@ -104,7 +104,7 @@ export default function LoginForm() {
           variant="outlined"
           disabled={emailHasError || passwordHasError}
         >
-          {text.logInWith}
+          {text.logIn}
         </Button>
       </div>
     </div>
