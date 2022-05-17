@@ -14,11 +14,13 @@ import { text } from "../text";
 
 import { getFilesAndFolderName, isFolder, getFilesAndFolderToShow, getFolderPath, getKBFileSize, sortBy, sortableTypes } from "./buckets.logic"
 
-import { getGoogleCloudBucketFiles, getGoogleCloudFile, uploadFile } from "./buckets.service"
+import { getGoogleCloudBucketFiles, getGoogleCloudFile, downloadFile, uploadFile } from "./buckets.service"
 
 function FileOrFolderRow({ file, navigationPath, setNavigationPath }) {
     const fileName = getFilesAndFolderName(file.name)
-    const nameCell = isFolder(file?.contentType) ? <div onClick={() => setNavigationPath([...navigationPath, fileName])}>{fileName}</div> : fileName;
+    const nameCell = isFolder(file?.contentType) 
+        ? <div onClick={() => setNavigationPath([...navigationPath, fileName])}>{fileName}</div> 
+        : <div onClick={() => downloadFile(navigationPath[1], fileName, file?.contentType)}>{fileName}</div>;
 
     return (<TableRow
         key={file.name}

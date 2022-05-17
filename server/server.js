@@ -1,7 +1,7 @@
 const express = require("express")
 const Multer = require("multer");
 const path = require("path")
-const { getGoogleAuthURL, getGoogleUserAndTokins, getGoogleCloudBuckets, getBucketFiles, getBucketFile, uploadFile } = require("./google")
+const { getGoogleAuthURL, getGoogleUserAndTokins, getGoogleCloudBuckets, getBucketFiles, getBucketFile, downloadGoogleCloudFile, uploadFile } = require("./google")
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -44,6 +44,17 @@ app.get("/getGoogleCloudFile", async (req, res) => {
   }
 
   res.send(data[0])
+})
+
+app.get("/downloadGoogleCloudFile", async (req, res) => {
+  let data = []
+
+  if (req.query.bucketName && req.query.fileName) {
+    data = await downloadGoogleCloudFile(req.query.bucketName, req.query.fileName)
+  }
+
+  console.log(data)
+  res.send(data)
 })
 
 app.post("/upload", multer.single("file"), (req, res) => {

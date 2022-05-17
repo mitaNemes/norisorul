@@ -61,6 +61,16 @@ function getBucketFile(bucketName, prefix) {
     return googleCloud.bucket(bucketName).getFiles({ prefix })
 }
 
+async function downloadGoogleCloudFile(bucketName, filename) {
+    const file = googleCloud.bucket(bucketName).file(filename);
+    const downlaodOptions = {
+        destination: `${__dirname}/${filename}`
+    };
+    const result = await file.download(downlaodOptions);
+
+    return result;
+}
+
 function uploadFile({ file, bucketName }) {
     console.log(file)
     // const blob = googleCloud.bucket(bucketName).file(file.originalname);
@@ -86,5 +96,6 @@ module.exports = {
     getGoogleCloudBuckets,
     getBucketFiles,
     getBucketFile,
+    downloadGoogleCloudFile,
     uploadFile
 }

@@ -33,6 +33,23 @@ export const getGoogleCloudFile = (bucketName, fileName) => {
     })
 };
 
+export const downloadFile = (bucketName, fileName, fileType) => {
+  return fetch(`/downloadGoogleCloudFile?bucketName=${bucketName}&fileName=${fileName}`)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    const blob = new Blob([data], {type: fileType});
+    const link = document.createElement("a");
+    console.log(blob)
+    // link.href = window.URL.createObjectURL(blob);
+    // link.click();
+  })
+  .catch((error) => {
+    throw new Error("Get Google Cloud Bucket List failed", error.message);
+  })
+}
+
 export const uploadFile = (bucketName, file) => {
   let body = new FormData();
 
