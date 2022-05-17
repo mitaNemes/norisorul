@@ -1,0 +1,32 @@
+.loginForm {
+	box-sizing: border-box;
+    align-self: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 20px;
+    margin-top: 200px;
+    border: 1px solid #D3D3D3;
+    width: 430px;
+
+	&Input {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 20px;
+
+		&Error {
+			color: red;
+			font-size: 12px;
+			margin: 0;
+		}
+	}
+
+	&ButtonWrapper {
+		gap: 10px;
+		display: flex;
+
+		& > * {
+			flex: 1;
+		}
+	}
+}

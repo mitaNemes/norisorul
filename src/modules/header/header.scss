@@ -1,0 +1,11 @@
+.header {
+	color: #fff;
+	display: flex;
+	padding: 4px 12px;
+	flex-direction: row;
+	background-color: #1976d2;
+
+	h2 {
+		flex: 1
+	}
+}

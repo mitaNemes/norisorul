@@ -1,0 +1,53 @@
+.bucketList {
+    padding: 30px 20px;
+
+    &Content {
+        margin-top: 20px;
+    }
+
+    .clickable {
+        color: #1976d2;
+        cursor: pointer;
+    }
+}
+
+.bucketData {
+    &Header {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+
+        h2 {
+            flex: 1;
+            margin: 0;
+        }
+    }
+
+    &Modal {
+        color: #1976d2;
+        display: flex;
+        flex-direction: column;
+
+        p {
+            margin: 0 0 4px;
+        }
+    }
+
+    &Input {
+        border: 1px solid rgba(25, 118, 210, 0.5);
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        font-weight: 500;
+        font-size: 0.875rem;
+        line-height: 1.75;
+        letter-spacing: 0.02857em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        flex: 1;
+        padding: 4px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+}
+
+
