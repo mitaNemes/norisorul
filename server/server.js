@@ -12,18 +12,6 @@ const multer = Multer({
   },
 });
 
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("../build"))
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../build", "index.html"))
-  })
-}
-
-app.get("/", (req, res) => {
-  res.send("Hello World!")
-})
-
 app.get("/getGoogleConsentUrl", (req, res) => {
   res.send(JSON.stringify(getGoogleAuthURL()))
 })
@@ -63,6 +51,13 @@ app.post("/upload", multer.single("file"), (req, res) => {
   const data = uploadFile(req.body)
   res.send(data)
 })
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"))
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../build", "index.html"))
+  })
+}
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
