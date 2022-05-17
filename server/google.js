@@ -4,6 +4,7 @@ const { google } = require("googleapis");
 const { Storage } = require("@google-cloud/storage")
 const path = require("path")
 const fetch = require("node-fetch");
+const { storage } = require("googleapis/build/src/apis/storage");
 
 const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
@@ -11,8 +12,19 @@ const oauth2Client = new google.auth.OAuth2(
     process.env.REDIRECT_URL
 );
 
+const serviceAccountCredentials = {}
+if (process.env.NODE_ENV === "production") {
+    serviceAccountCredentials = {
+        credentials: JSON.parse(process.env.GC_SERVICE_ACCOUNTE)
+    }
+} else {
+    serviceAccountCredentials = {
+        keyFilename: path.join(__dirname, "../server/festive-firefly-349922-731e359cd2e7.json"),
+
+    }
+}
 const googleCloud = new Storage({
-    keyFilename: path.join(__dirname, "../server/festive-firefly-349922-731e359cd2e7.json"),
+    ...serviceAccountCredentials,
     projectId: process.env.PROJCET_ID
 })
 
@@ -59,7 +71,7 @@ function getBucketFile(bucketName, prefix) {
     return googleCloud.bucket(bucketName).getFiles({ prefix })
 }
 
-function uploadFile({ file, bucketName}) {
+function uploadFile({ file, bucketName }) {
     console.log(file)
     // const blob = googleCloud.bucket(bucketName).file(file.originalname);
     // const blobStream = blob.createWriteStream();
