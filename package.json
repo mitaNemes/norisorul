@@ -31,10 +31,9 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "watch-app": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
-    "server": "nodemon server/server.js",
-    "dev": "npm watch-app && npm server"
+    "server": "nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": [

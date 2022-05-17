@@ -2,19 +2,18 @@ export const parseFileData = (response) => {
     return response.map(elem => ({
         id: elem.metadata.id,
         contentType: elem.metadata.contentType,
-        name:  elem.metadata.name,
+        name: elem.metadata.name,
         size: parseInt(elem.metadata.size),
         timeCreated: elem.metadata.timeCreated
     }))
 }
 
 export const parseBucketData = (response) => {
-    console.log(response)
     const test = response.map(elem => ({
         id: elem.metadata.id,
-        name:  elem.metadata.name,
+        name: elem.metadata.name,
         storageClass: elem.metadata.storageClass,
-        location:  elem.metadata.location,
+        location: elem.metadata.location,
         timeCreated: elem.metadata.timeCreated
     }))
 
@@ -85,11 +84,11 @@ export const sortBy = (list, order, orderBy) => {
     }
 
     return list.sort((a, b) => {
-        if (a[orderBy] < b[orderBy]) { 
-            return toggleOrder(-1); 
+        if (a[orderBy] < b[orderBy]) {
+            return toggleOrder(-1);
         }
-        if (a[orderBy] > b[orderBy]) { 
-            return toggleOrder(1); 
+        if (a[orderBy] > b[orderBy]) {
+            return toggleOrder(1);
         }
         return 0;
     })

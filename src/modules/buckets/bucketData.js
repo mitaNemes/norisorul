@@ -64,7 +64,6 @@ export default function BucketData({ navigationPath, setNavigationPath }) {
     }
 
     const getFilesFromFolder = async () => {
-        console.log( getFolderPath(navigationPath))
         const files = await getGoogleCloudFile(navigationPath[1], getFolderPath(navigationPath))
         setGoogleCloudBucketFiles(getFilesAndFolderToShow(files, navigationPath, 2))
     }
