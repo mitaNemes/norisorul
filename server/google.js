@@ -2,7 +2,6 @@ require("dotenv").config();
 
 const { google } = require("googleapis");
 const { Storage } = require("@google-cloud/storage")
-const path = require("path")
 const fetch = require("node-fetch");
 
 const oauth2Client = new google.auth.OAuth2(
@@ -11,19 +10,11 @@ const oauth2Client = new google.auth.OAuth2(
     process.env.REDIRECT_URL
 );
 
-const serviceAccountCredentials = {}
-if (process.env.NODE_ENV === "production") {
-    serviceAccountCredentials = {
-        credentials: JSON.parse(process.env.GC_SERVICE_ACCOUNTE)
-    }
-} else {
-    serviceAccountCredentials = {
-        keyFilename: path.join(__dirname, "../server/festive-firefly-349922-731e359cd2e7.json"),
-
-    }
-}
 const googleCloud = new Storage({
-    ...serviceAccountCredentials,
+    credentials: {
+        client_email: process.env.SA_CLIENT_EMAIL,
+        private_key: process.env.SA_PRIVATE_KEY.replace(/\\n/g, '\n')
+    },
     projectId: process.env.PROJCET_ID
 })
 
