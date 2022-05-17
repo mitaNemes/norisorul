@@ -97,14 +97,14 @@ export default function LoginForm() {
           onClick={getGoogleConsentUrl}
           variant="outlined"
         >
-          {text.logIn}
+          {text.logInWithG}
         </Button>
         <Button
           onClick={handleLogIn}
           variant="outlined"
           disabled={emailHasError || passwordHasError}
         >
-          {text.logInWithG}
+          {text.logInWith}
         </Button>
       </div>
     </div>
