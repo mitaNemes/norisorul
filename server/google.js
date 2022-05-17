@@ -61,14 +61,13 @@ function getBucketFile(bucketName, prefix) {
     return googleCloud.bucket(bucketName).getFiles({ prefix })
 }
 
-async function downloadGoogleCloudFile(bucketName, filename) {
+async function downloadGoogleCloudFile(bucketName, filename, fileType) {
     const file = googleCloud.bucket(bucketName).file(filename);
-    const downlaodOptions = {
-        destination: `${__dirname}/${filename}`
-    };
-    const result = await file.download(downlaodOptions);
-
-    return result;
+    return file.getSignedUrl({
+        version: "v4",
+        action: 'read',
+        expires: Date.now() + 15 * 60 * 1000, // 15 minutes
+    });
 }
 
 function uploadFile({ file, bucketName }) {

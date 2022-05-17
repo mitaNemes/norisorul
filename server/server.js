@@ -47,18 +47,14 @@ app.get("/getGoogleCloudFile", async (req, res) => {
 })
 
 app.get("/downloadGoogleCloudFile", async (req, res) => {
-  let data = []
-
   if (req.query.bucketName && req.query.fileName) {
-    data = await downloadGoogleCloudFile(req.query.bucketName, req.query.fileName)
+    const url = await downloadGoogleCloudFile(req.query.bucketName, req.query.fileName)
+    res.send(url);
   }
 
-  console.log(data)
-  res.send(data)
 })
 
 app.post("/upload", multer.single("file"), (req, res) => {
-  console.log(req.body)
   const data = uploadFile(req.body)
   res.send(data)
 })

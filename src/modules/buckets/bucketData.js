@@ -20,7 +20,7 @@ function FileOrFolderRow({ file, navigationPath, setNavigationPath }) {
     const fileName = getFilesAndFolderName(file.name)
     const nameCell = isFolder(file?.contentType) 
         ? <div onClick={() => setNavigationPath([...navigationPath, fileName])}>{fileName}</div> 
-        : <div onClick={() => downloadFile(navigationPath[1], fileName, file?.contentType)}>{fileName}</div>;
+        : <div onClick={() => downloadFile(navigationPath[1], file.name)}>{fileName}</div>;
 
     return (<TableRow
         key={file.name}
@@ -76,7 +76,6 @@ export default function BucketData({ navigationPath, setNavigationPath }) {
     }
 
     const upload = () => {
-        console.log(selectedFile)
         uploadFile(navigationPath[1], selectedFile)
     }
 

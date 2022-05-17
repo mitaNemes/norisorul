@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 
 function BradcrumbElement({ pathElem, index, breadcrumbsLength, setNavigationPath, navigationPath }) {
     const cloneNavigationPath = [...navigationPath]
-    cloneNavigationPath.splice(index)
+    cloneNavigationPath.splice(index+1)
 
     return index === breadcrumbsLength
         ? (<div>
