@@ -4,7 +4,6 @@ const { google } = require("googleapis");
 const { Storage } = require("@google-cloud/storage")
 const path = require("path")
 const fetch = require("node-fetch");
-const { storage } = require("googleapis/build/src/apis/storage");
 
 const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
