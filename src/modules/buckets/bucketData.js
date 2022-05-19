@@ -160,7 +160,9 @@ export default function BucketData({ navigationPath, setNavigationPath }) {
     )
 }
 
-const style = {
+
+
+const boxStyle = {
     position: 'absolute',
     top: '50%',
     left: '50%',
